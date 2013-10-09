@@ -1,6 +1,7 @@
 package com.tz.common.controller;
 
 import java.util.HashMap;
+import org.springframework.http.HttpStatus;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.tz.common.dao.RegionsDAO;
 import com.tz.common.model.Region;
@@ -35,10 +37,9 @@ public class RegionRestController {
 		return list;
 	}
 
-	@RequestMapping(value = "/uip_regions/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/uip_regions", method = RequestMethod.POST)
 	public @ResponseBody
-	Map<String, Object> save(@PathVariable("id") String itemId,
-			@RequestBody Region region) {
+	Map<String, Object> save(@RequestBody Region region) {
 		Map<String, Object> list = new HashMap<String, Object>();
 		int cnt = regionsDAO.save(region);
 		list.put("uip_regions", region);
@@ -47,7 +48,7 @@ public class RegionRestController {
 
 	@RequestMapping(value = "/uip_regions/{id}", method = RequestMethod.PATCH)
 	public @ResponseBody
-	Map<String, Object> update(@PathVariable("id") String itemId,
+	Map<String, Object> update(@PathVariable("id") int id,
 			@RequestBody Region region) {
 		Map<String, Object> list = new HashMap<String, Object>();
 		int cnt = regionsDAO.update(region);
@@ -57,10 +58,10 @@ public class RegionRestController {
 
 	@RequestMapping(value = "/uip_regions/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
-	Map<String, Object> delete(@PathVariable("id") String itemId,
+	Map<String, Object> delete(@PathVariable("id") int id,
 			@RequestBody Region region) {
 		Map<String, Object> list = new HashMap<String, Object>();
-		int cnt = regionsDAO.save(region);
+		regionsDAO.delete(id);
 		list.put("uip_regions", region);
 		return list;
 	}

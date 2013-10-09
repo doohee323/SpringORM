@@ -39,10 +39,9 @@ public class CenterRestController {
 		return list;
 	}
 
-	@RequestMapping(value = "/uip_centers/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/uip_centers", method = RequestMethod.POST)
 	public @ResponseBody
-	Map<String, Object> save(@PathVariable("id") String itemId,
-			@RequestBody Center center) {
+	Map<String, Object> save(@RequestBody Center center) {
 		Map<String, Object> list = new HashMap<String, Object>();
 		int cnt = centersDAO.save(center);
 		list.put("uip_centers", center);
@@ -51,7 +50,7 @@ public class CenterRestController {
 
 	@RequestMapping(value = "/uip_centers/{id}", method = RequestMethod.PATCH)
 	public @ResponseBody
-	Map<String, Object> update(@PathVariable("id") String itemId,
+	Map<String, Object> update(@PathVariable("id") int itemId,
 			@RequestBody Center center) {
 		Map<String, Object> list = new HashMap<String, Object>();
 		int cnt = centersDAO.update(center);
@@ -61,10 +60,10 @@ public class CenterRestController {
 
 	@RequestMapping(value = "/uip_centers/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody
-	Map<String, Object> delete(@PathVariable("id") String itemId,
+	Map<String, Object> delete(@PathVariable("id") int id,
 			@RequestBody Center center) {
 		Map<String, Object> list = new HashMap<String, Object>();
-		int cnt = centersDAO.save(center);
+		centersDAO.delete(id);
 		list.put("uip_centers", center);
 		return list;
 	}

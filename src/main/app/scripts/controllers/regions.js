@@ -19,8 +19,9 @@ angular.module('sheepwebApp')
         delete $scope.newRegion.id;
         delete $scope.newRegion.uip_center;
         $scope.newRegion.uip_center_id = center_id;
-    	var params = {uip_region : $scope.newRegion};
+    	var params = {region : $scope.newRegion};
     	RegionService.save(params, function (data) {
+            debugger
             data.uip_region.uip_center_id = center_id;
             // delete data.uip_region.id;
             // delete data.uip_region.uip_center;

@@ -10,9 +10,19 @@
 	</listener>
 
 	<context-param>
-	    <param-name>contextConfigLocation</param-name>
-	    <param-value>classpath:context-common.xml</param-value>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:context-common.xml</param-value>
 	</context-param>
+
+	<filter>
+		<filter-name>cors</filter-name>
+		<filter-class>com.tz.filter.CorsFilter</filter-class>
+	</filter>
+
+	<filter-mapping>
+		<filter-name>cors</filter-name>
+		<url-pattern>/rest/*</url-pattern>
+	</filter-mapping>
 
 	<servlet>
 		<servlet-name>dispatcher</servlet-name>
@@ -38,10 +48,10 @@
 			<param-value>/WEB-INF/restful-servlet.xml</param-value>
 		</init-param>
 	</servlet>
-	
+
 	<servlet-mapping>
 		<servlet-name>restful</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
-	
+
 </web-app>
