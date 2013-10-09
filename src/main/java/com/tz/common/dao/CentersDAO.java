@@ -46,8 +46,8 @@ public class CentersDAO {
 		return (Integer) sessionFactory.getCurrentSession().save(center);
 	}
 
-	public int update(Center center) {
-		return (Integer) sessionFactory.getCurrentSession().merge(center);
+	public Center update(Center center) {
+		return (Center)sessionFactory.getCurrentSession().merge(center);
 	}
 
 	public void delete(int id) {

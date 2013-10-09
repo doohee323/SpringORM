@@ -46,8 +46,8 @@ public class RegionsDAO {
 		return (Integer) sessionFactory.getCurrentSession().save(region);
 	}
 
-	public int update(Region region) {
-		return (Integer) sessionFactory.getCurrentSession().merge(region);
+	public Region update(Region region) {
+		return (Region)sessionFactory.getCurrentSession().merge(region);
 	}
 
 	public void delete(int id) {
