@@ -28,17 +28,25 @@ public class RegionsDAO {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Region> searchRegions(String name) {
+	public List<Region> getAllRegions() {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
 				Region.class);
-		criteria.add(Restrictions.ilike("name", name + "%"));
+		return criteria.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Region> searchRegions(int uip_center_id) {
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
+				Region.class);
+		criteria.add(Restrictions.eq("uip_center_id", uip_center_id));
 		return criteria.list();
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Region> getAllRegions() {
+	public List<Region> searchRegion(int id) {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(
 				Region.class);
+		criteria.add(Restrictions.eq("id", id));
 		return criteria.list();
 	}
 

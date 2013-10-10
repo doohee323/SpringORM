@@ -30,9 +30,18 @@ public class RegionRestController {
 
     @RequestMapping("/uip_regions")
     public @ResponseBody
-    Map<String, Object> uipRegions(){
+    Map<String, Object> uipAllRegions(){
         Map<String, Object> list = new HashMap<String, Object>();
         List<Region> regions = regionsDAO.getAllRegions();
+        list.put("uip_regions", regions);
+        return list;
+    }
+    
+    @RequestMapping(value = "/uip_regions/{id}", method = RequestMethod.GET)
+    public @ResponseBody
+    Map<String, Object> uipRegions(@PathVariable("id") int uip_center_id){
+        Map<String, Object> list = new HashMap<String, Object>();
+        List<Region> regions = regionsDAO.searchRegions(uip_center_id);
         list.put("uip_regions", regions);
         return list;
     }

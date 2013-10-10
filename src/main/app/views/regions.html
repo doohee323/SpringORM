@@ -9,8 +9,6 @@
     <div class="container">
        <select ng-model="currentDrafter" ng-selected="currentDrafter"  ng-options="drafter.name for drafter in drafterItems"></select>
         <div class="ngGrid" >
-          <h2>ngGrid</h2>
-          <button class="btn btn-primary" ng-click="getData()" ng-model="getData"><i class="icon-download icon-white"></i> Get Data</button>
           <div>
             <div ng-grid="gridOptions" class="well"></div>
           </div>
