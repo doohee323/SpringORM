@@ -8,6 +8,7 @@ angular.module('sheepwebApp')
     var center_id = $routeParams.id;
 	RegionService.get({uip_center_id: center_id}, function(data) {
 		$scope.uip_regions = data.uip_regions;
+		$scope.gridOptions = data.uip_regions;
 	 	if(data.uip_regions.length > 0) {
 	 		$scope.newRegion = 	data.uip_regions[0];
 	 	} 
