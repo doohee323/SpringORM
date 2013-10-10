@@ -23,7 +23,6 @@
 <link
   href="bower_components/bootstrap-sass/bootstrap-responsive-2.3.2.min.css"
   rel="stylesheet" />
-<link href="styles/appStyles.css" rel="stylesheet" />
 
 <!-- Fav and touch icons -->
 <link rel="shortcut icon" href="images/favicon.png">
@@ -76,6 +75,10 @@ html,body {
 
 </head>
   <body ng-app="sheepwebApp" ng-controller="NavbarCtrl">
+  
+ <div class="gridStyle" ng-grid="gridOptions">
+ </div>  
+  
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -157,9 +160,12 @@ html,body {
        ga('send', 'pageview');
     </script>
 
+    <link rel="stylesheet" type="text/css" href="http://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.7/ng-grid.css" />
+
     <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/moment/min/moment+langs.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ng-grid/2.0.7/ng-grid.js"></script>
 
         <!-- build:js scripts/plugins.js -->
         <script src="bower_components/bootstrap-sass/js/bootstrap-affix.js"></script>

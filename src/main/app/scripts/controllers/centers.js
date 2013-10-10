@@ -4,7 +4,7 @@ angular.module('sheepwebApp')
   .controller('CentersCtrl', function ($scope, $location, $routeParams, config, CenterService) {
 	$scope.$location = $location;
     $scope.newCenter = {};
-
+    
 	CenterService.get({}, function(data) {
 	 	$scope.uip_centers = data.uip_centers;
 	    if($location.$$path != '/centers') {
