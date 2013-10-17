@@ -8,7 +8,7 @@ var config = {
 	server: 'spring' // spring, rails
 };
 
-angular.module('sheepwebApp', ['ngResource', 'ngGrid'])
+angular.module('sheepwebApp', ['ngResource'])
 	.constant('config', config)
 	.config(function($routeProvider, $locationProvider) {
 	$routeProvider
