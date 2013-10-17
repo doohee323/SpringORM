@@ -1,4 +1,4 @@
-SpringRedis
+SpringORM
 =========
 
 web app with angular.js, bootstrap and Spring restful
@@ -11,11 +11,12 @@ This is made with these traits.
     - angular.js $resource
 # 2. bootstrap
 # 3. server-side
-     - springframework : https://github.com/doohee323/SpringRedis
+     - springframework : https://github.com/doohee323/SpringORM
+# 4. spring-data - redis(jedis) integration
 
 this app is deployed at heroku
 
-http://SpringRedis.herokuapp.com
+http://SpringORM.herokuapp.com
 
 There are some articles related with this app.
 
