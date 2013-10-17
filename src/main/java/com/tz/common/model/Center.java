@@ -9,6 +9,8 @@ import javax.persistence.Table;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+import com.tz.redis.DomainObject;
+
 /**
  * @author TZ
  * 
@@ -16,7 +18,14 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 @Entity
 @Table(name = "UIP_CENTER")
-public class Center {
+public class Center implements DomainObject {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public static final String OBJECT_KEY = "Center";
 
 	@SequenceGenerator(name = "CenterGen", sequenceName = "UIP_CENTER_S")
 	@Id
@@ -99,5 +108,15 @@ public class Center {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	@Override
+	public String getKey() {
+		return Integer.toString(getId());
+	}
+
+	@Override
+	public String getObjectKey() {
+		return OBJECT_KEY;
 	}
 }

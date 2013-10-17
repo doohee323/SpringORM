@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.tz.common</groupId>
-	<artifactId>SpringORM</artifactId>
+	<artifactId>SpringRedis</artifactId>
 	<packaging>war</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>SpringORM Webapp</name>
+	<name>SpringRedis Webapp</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -96,6 +96,18 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-jdbc</artifactId>
 			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-redis</artifactId>
+			<version>1.1.0.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>2.1.0</version>
 		</dependency>
 
 		<dependency>
@@ -244,7 +256,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>SpringORM</finalName>
+		<finalName>SpringRedis</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

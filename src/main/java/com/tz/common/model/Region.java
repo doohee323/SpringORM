@@ -9,6 +9,8 @@ import javax.persistence.Table;
 
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+import com.tz.redis.DomainObject;
+
 /**
  * @author TZ
  * 
@@ -16,7 +18,14 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 
 @Entity
 @Table(name = "UIP_REGION")
-public class Region {
+public class Region implements DomainObject {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public static final String OBJECT_KEY = "Region";
 
 	@SequenceGenerator(name = "RegionGen", sequenceName = "UIP_REGION_S")
 	@Id
@@ -110,5 +119,15 @@ public class Region {
 
 	public void setRegion_code(String region_code) {
 		this.region_code = region_code;
+	}
+	
+	@Override
+	public String getKey() {
+		return Integer.toString(getId());
+	}
+
+	@Override
+	public String getObjectKey() {
+		return OBJECT_KEY;
 	}
 }

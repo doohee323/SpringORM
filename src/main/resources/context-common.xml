@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:p="http://www.springframework.org/schema/p" 
-	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	   		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -13,43 +11,76 @@
 			http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
 			http://www.springframework.org/schema/mvc 
 			http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
-	
+
 	<context:annotation-config />
-	
-    <context:component-scan base-package="com.tz.common" use-default-filters="false">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component" />
-    </context:component-scan>
-	
-	<mvc:annotation-driven /> 
-	
-	<context:property-placeholder location="classpath:environment-database.properties" />
-	
-    <bean 	id="messageSource" 
-    		class="org.springframework.context.support.ResourceBundleMessageSource"
-    		p:basename="Messages"/>
-	    
+
+	<context:component-scan base-package="com.tz.common"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Repository" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Component" />
+	</context:component-scan>
+
+	<mvc:annotation-driven />
+
+	<context:property-placeholder
+		location="classpath:environment-database.properties" />
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource"
+		p:basename="Messages" />
+
 	<tx:annotation-driven transaction-manager="transactionManager" />
-    
-    <bean 	id="transactionManager" 
-    		class="org.springframework.orm.hibernate3.HibernateTransactionManager" 
-       		p:sessionFactory-ref="sessionFactory" />
-	
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-	    <property name="dataSource" ref="dataSource"/>
-	    <property name="hibernateProperties">
-	      <props>        
-	            <prop key="hibernate.dialect">${hibernate.dialect}</prop>          
-	            <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
-	       </props>
-	    </property>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager"
+		p:sessionFactory-ref="sessionFactory" />
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+			</props>
+		</property>
 		<property name="packagesToScan" value="com.tz.common"></property>
 	</bean>
-	
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-			p:driverClassName="${jdbc.driverClassName}"
-			p:url="${jdbc.url}"
-			p:username="${jdbc.username}"
-			p:password="${jdbc.password}"/>
-	
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"
+		p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.url}"
+		p:username="${jdbc.username}" p:password="${jdbc.password}" />
+
+
+	<!-- redis conection factory -->
+	<bean id="connectionFactory"
+		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
+		p:use-pool="true" p:host-name="pub-redis-13710.us-east-1-4.1.ec2.garantiadata.com"
+		p:port="13710" p:password="KWSKkL8OrXsgvizE" />
+
+	<!-- redis template -->
+	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"
+		p:connection-factory-ref="connectionFactory" />
+
+	<!-- redis string template -->
+	<bean id="redisStringTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"
+		p:connection-factory-ref="connectionFactory" />
+
+	<!-- redis map binding -->
+	<bean id="userRedisMap"
+		class="org.springframework.data.redis.support.collections.DefaultRedisMap">
+		<constructor-arg ref="redisTemplate" />
+		<constructor-arg value="USER" />
+	</bean>
+
+	<bean id="centersRepository" class="com.tz.common.redis.CentersRepository">
+		<property name="redisTemplate" ref="redisTemplate" />
+	</bean>
+	<bean id="regionsRepository" class="com.tz.common.redis.RegionsRepository">
+		<property name="redisTemplate" ref="redisTemplate" />
+	</bean>
+
 </beans>
