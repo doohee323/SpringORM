@@ -58,8 +58,8 @@
 	<!-- redis conection factory -->
 	<bean id="connectionFactory"
 		class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory"
-		p:use-pool="true" p:host-name="pub-redis-13710.us-east-1-4.1.ec2.garantiadata.com"
-		p:port="13710" p:password="KWSKkL8OrXsgvizE" />
+		p:use-pool="true" p:host-name="52.0.156.206"
+		p:port="6379" p:password="" />
 
 	<!-- redis template -->
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate"

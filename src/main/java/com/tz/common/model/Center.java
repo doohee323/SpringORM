@@ -27,7 +27,7 @@ public class Center implements DomainObject {
 
 	public static final String OBJECT_KEY = "Center";
 
-	@SequenceGenerator(name = "CenterGen", sequenceName = "UIP_CENTER_S")
+	@SequenceGenerator(name = "CenterGen", sequenceName = "UIP_CENTER")
 	@Id
 	@GeneratedValue(generator = "CenterGen")
 	private int id;

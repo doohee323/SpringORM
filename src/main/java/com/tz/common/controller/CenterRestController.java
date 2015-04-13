@@ -53,7 +53,7 @@ public class CenterRestController {
 
 		// try {
 		// URI redisUri = new
-		// URI("redis://rediscloud:KWSKkL8OrXsgvizE@pub-redis-13710.us-east-1-4.1.ec2.garantiadata.com:13710");
+		// URI("redis://rediscloud:KWSKkL8OrXsgvizE@52.0.156.206:6379");
 		// JedisConnectionFactory redisConnectionFactory = new
 		// JedisConnectionFactory();
 		// redisConnectionFactory.setHostName(redisUri.getHost());
